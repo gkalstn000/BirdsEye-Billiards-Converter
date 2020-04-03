@@ -1,0 +1,19 @@
+item {
+    id: 1
+    name: 'red_ball'
+}
+
+item {
+    id: 2
+    name: 'table'
+}
+
+item {
+    id: 3
+    name: 'white_ball'
+}
+
+item {
+    id: 4
+    name: 'yellow_ball'
+}
