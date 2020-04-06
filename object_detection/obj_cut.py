@@ -24,7 +24,7 @@ from object_detection.utils import label_map_util
 from object_detection.utils import visualization_utils as vis_util
 
 
-PATH_TO_FROZEN_GRAPH = './object_detection/fine_tuned_model_faster_rcnn_inception_v2_coco_10000step/frozen_inference_graph.pb'
+PATH_TO_FROZEN_GRAPH = './object_detection/fine_tuned_model/frozen_inference_graph.pb'
 PATH_TO_LABEL_MAP = './object_detection/label_map.pbtxt'
 NUM_CLASSES = 4
 MODEL_NAME = 'faster_rcnn_inception_v2'
