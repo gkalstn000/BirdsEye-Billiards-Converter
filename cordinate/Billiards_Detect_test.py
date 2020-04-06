@@ -45,7 +45,7 @@ def lines_points(img, lines, color=[255,0,0], thickness =3) :
                 result=np.append(result,a,axis=0)
             
             cv2.line(img, (x1,y1),(x2,y2), color,thickness)
-    print(result)
+#    print(result)
     return result
             
 def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap) :
@@ -59,13 +59,13 @@ def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap) :
 
 def max_min_point(array):
     shape=array.shape
-    print(shape[0])
+#    print(shape[0])
 # 혹시 좌표 디택팅 오류면 이부분일 가능성 높다.
 
 def distance(array,value): # 두점간의 거리를 구하는 function
     x1,y1 = array[0], array[1]
     x2,y2 = value[0], value[1]
-    print(x1,y1,x2,y2)
+#    print(x1,y1,x2,y2)
     result =  math.sqrt(
         math.pow((x2 - x1), 2) + math.pow(y2 - y1,2))
     

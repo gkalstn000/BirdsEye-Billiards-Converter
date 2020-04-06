@@ -56,7 +56,6 @@ def point_order(point_list) :
     tmp = list(point_angle.keys())
     biggest_angle = angle_dict.get(max(tmp))
     
-    print(np.array(point_angle.keys()))
     if biggest_angle == 'point1' or 'point2' :
         #point3 or point4 중 긴다이 짧은다이 찾아서 리턴
         if biggest_angle == 'point1' :
@@ -70,9 +69,11 @@ def point_order(point_list) :
         to_p4 = get_distance(point_list[2], p)
         
         if to_p3 > to_p4 :
-            return np.array([p, point_list[2], point_list[1], p_])
-        else :
+            #return np.array([p, point_list[2], point_list[1], p_])
             return np.array([p, point_list[1], point_list[2], p_])
+        else :
+            #return np.array([p, point_list[1], point_list[2], p_])
+            return np.array([p, point_list[2], point_list[1], p_])
     
         
     elif biggest_angle == 'point3' or 'point4' :
@@ -88,9 +89,11 @@ def point_order(point_list) :
         to_p2 = get_distance(key_point, p)
         
         if to_p1 > to_p2 :
-            return np.array([p, key_point, p1, p_])
-        else :
+            #return np.array([p, key_point, p1, p_])
             return np.array([p, p1, key_point, p_])
+        else :
+            #return np.array([p, p1, key_point, p_])
+            return np.array([p, key_point, p1, p_])
         
     
 
@@ -106,7 +109,6 @@ def get_point_angle(p1, p2, p3) :
 def get_distance(point1, point2) :
     return math.sqrt(math.pow(point1[0]-point2[0], 2) + math.pow(point1[1] -point2[1], 2))
 
-np.dot(np.array([1, 2]), np.array([2, 3]))
 
 #두 벡터사이 각 구하는 메서드
 def get_angle(A, B, len_A, len_B) :
@@ -124,5 +126,4 @@ def get_index(list, value) :
     if i == len(value) :
         print('그런 포인트 없음')
 
-test1 = np.array([[1, -1], [-1, 4], [1.7, 5], [3.5, 2]])
-point_order(test1)
+

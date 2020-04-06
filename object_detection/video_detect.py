@@ -34,9 +34,9 @@ from utils import visualization_utils as vis_util
 
 def write_video():
 
-    filename = 'output/fine_tuned_model_30000step_3.avi'
+    filename = 'output/faster_rcnn_inception_400000step_2.avi'
     codec = cv2.VideoWriter_fourcc('W', 'M', 'V', '2')
-    cap = cv2.VideoCapture('./test_video/video3.mp4')
+    cap = cv2.VideoCapture('./test_video/video2.mp4')
     framerate = round(cap.get(5),2)
     w = int(cap.get(3))
     h = int(cap.get(4))
