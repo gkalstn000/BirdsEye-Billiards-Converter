@@ -7,10 +7,10 @@ Created on Wed Mar 11 16:25:03 2020
 """
 
 import numpy as np
-import sys
-import os
+#import sys
+#import os
 import tensorflow.compat.v1 as tf
-import cv2
+#import cv2
 
 from PIL import Image
 
@@ -105,7 +105,7 @@ def single_image_cut(image_path) :
     image = Image.open(image_path)
     image = image.resize((845,526))
     image_np = load_image_into_numpy_array(image)
-    image_np_expanded = np.expand_dims(image_np, axis=0)
+#    image_np_expanded = np.expand_dims(image_np, axis=0)
     output_dict = run_inference_for_single_image(image_np, detection_graph)
     vis_util.visualize_boxes_and_labels_on_image_array(
             image_np,

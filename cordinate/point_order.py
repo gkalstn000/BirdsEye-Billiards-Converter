@@ -70,10 +70,12 @@ def point_order(point_list) :
         
         if to_p3 > to_p4 :
             #return np.array([p, point_list[2], point_list[1], p_])
-            return np.array([p, point_list[1], point_list[2], p_])
+            #return np.array([p, point_list[1], point_list[2], p_]) 이게 위아래 반대
+            return np.array([point_list[2], p_, p, point_list[1]])
         else :
             #return np.array([p, point_list[1], point_list[2], p_])
-            return np.array([p, point_list[2], point_list[1], p_])
+            #return np.array([p, point_list[2], point_list[1], p_])
+            return np.array([point_list[1], p_, p, point_list[2]])
     
         
     elif biggest_angle == 'point3' or 'point4' :
@@ -90,10 +92,12 @@ def point_order(point_list) :
         
         if to_p1 > to_p2 :
             #return np.array([p, key_point, p1, p_])
-            return np.array([p, p1, key_point, p_])
+            #return np.array([p, p1, key_point, p_])
+            return np.array([key_point, p_, p, p1])
         else :
             #return np.array([p, p1, key_point, p_])
-            return np.array([p, key_point, p1, p_])
+            #return np.array([p, key_point, p1, p_])
+            return np.array([p1, p_, p, key_point])
         
     
 

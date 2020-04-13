@@ -1,12 +1,12 @@
 * content
 {:toc}
-# capstone : 3-cusion Vertical transformation
+# capstone : 3-cusion Vertical View Transformation
 
 ## 프로젝트 구성원
 
-하민수 - 이미지 학습, object detection, boundary box 잘라내기
+하민수 - 이미지 학습, object detection, boundary box 잘라내기, 공좌표 구하기, 꼭지점 순서 구하기
 
-김건기 - 당구대 이미지 꼭지점 좌표, 공 좌표 구하기
+김건기 - 당구대 이미지 꼭지점 좌표, GUI
 
 백승헌
 

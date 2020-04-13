@@ -3,7 +3,7 @@ import sys
 import cv2
 import numpy as np
 import math
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 print(sys.version)
 green_color = (0,255,0)
 red_color = (0,0,255)
@@ -108,7 +108,7 @@ def Detecting(img) :
     hsv = hsv[0][0] 
     # bgr과 hsv 값 출력 
 
-    img_gray = cv2.cvtColor(img_color, cv2.COLOR_BGR2GRAY)
+#    img_gray = cv2.cvtColor(img_color, cv2.COLOR_BGR2GRAY)
     hsv_min, hsv_max = color_range(hsv,40)
     img_mask = cv2.inRange(img_hsv, hsv_min, hsv_max)
 
