@@ -7,10 +7,10 @@ Created on Mon Apr  6 00:14:25 2020
 """
 
 import numpy as np
-import sys
-import os
+#import sys
+#import os
 import tensorflow.compat.v1 as tf
-import cv2
+#import cv2
 
 from PIL import Image
 
@@ -21,7 +21,7 @@ from object_detection.utils import ops as utils_ops
 #   raise ImportError('Please upgrade your tensorflow installation to v1.4.* or later!')
 
 from object_detection.utils import label_map_util
-from object_detection.utils import visualization_utils as vis_util
+#from object_detection.utils import visualization_utils as vis_util
 
 
 PATH_TO_FROZEN_GRAPH = './object_detection/fine_tuned_model/frozen_inference_graph.pb'
@@ -167,6 +167,7 @@ def img_cut(image_path) :
     white = [(absolute_coord[2][0]+absolute_coord[2][2])//2 - c[0], (absolute_coord[2][1]+absolute_coord[2][3])//2 - c[1]]
     yellow = [(absolute_coord[3][0]+absolute_coord[3][2])//2 - c[0], (absolute_coord[3][1]+absolute_coord[3][3])//2 - c[1]]
     
+        
     points = [white, red, yellow]
     
     result_dict = {'image_np' : bounding_box_img,

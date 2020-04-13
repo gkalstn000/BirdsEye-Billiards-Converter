@@ -5,7 +5,7 @@ import sys
 import cv2 as cv
 import numpy as np
 import math
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 print(sys.version)
 green_color = (0,255,0)
 red_color = (0,0,255)
@@ -112,7 +112,7 @@ def Detecting(img) :
     hsv = hsv[0][0] 
     # bgr과 hsv 값 출력 
 
-    img_gray = cv.cvtColor(img_color, cv.COLOR_BGR2GRAY)
+#    img_gray = cv.cvtColor(img_color, cv.COLOR_BGR2GRAY)
     hsv_min, hsv_max = color_range(hsv,40)
     img_mask = cv.inRange(img_hsv, hsv_min, hsv_max)
 
@@ -177,11 +177,11 @@ def houghCircle(img):
 def Red_Ball(img) :
     result = []   
     img_color = img.copy()
-    img_copy = img.copy()
+#    img_copy = img.copy()
     ball = cv.imread('./redball.jpg')
 
     img_hsv = cv.cvtColor(img_color, cv.COLOR_BGR2HSV)
-    mask=np.zeros_like(img_copy)
+#    mask=np.zeros_like(img_copy)
     #공의 이미지 중앙값 가져오기
     width, height = image_center(ball) 
     hsv_color = ball[height,width]
