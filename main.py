@@ -44,6 +44,6 @@ all_points.append((points[2][0], points[2][1]))
 import trans.imgwarp2 as iw
 
 final_image = iw.warp(all_points)
-img = Image.fromarray(final_image, 'RGB')
+img = Image.fromarray(final_image, 'RGB') 
 img.save('./test_image_result/result.jpeg')
 
