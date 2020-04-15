@@ -133,6 +133,8 @@ tensorflow 1.15와 호환되는 CUDA는 10.0 미만 버전이기 때문에 최�
 > cd Download #navigate dir which you downloaded anaconda 
 > bash Anaconda3-2019.10-Linux-x86_64.sh
 > ```
+>
+> 자기가 받은 Anaconda 이름.sh 해주시면 됩니다.
 
 ### STEP 11. 가상환경 설치
 
