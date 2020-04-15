@@ -6,21 +6,23 @@ Created on Sun Mar  1 19:14:58 2020
 @author: gkalstn
 """
 import numpy as np
-from collections import defaultdict
-from io import StringIO
+#from collections import defaultdict
+#from io import StringIO
 #from matplotlib import pyplot as plt
-from PIL import Image
-from distutils.version import LooseVersion, StrictVersion
+#from PIL import Image
+#from distutils.version import LooseVersion, StrictVersion
+from distutils.version import StrictVersion
+
 import cv2
-from imutils import paths
+#from imutils import paths
 import tensorflow.compat.v1 as tf
 import time
-import re
+#import re
 import sys
 
 #This is needed since the code is stored in the object_detection    folder.
 sys.path.append("..")
-from object_detection.utils import ops as utils_ops
+#from object_detection.utils import ops as utils_ops
 
 if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
   raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')
@@ -57,7 +59,7 @@ def write_video():
     PATH_TO_FROZEN_GRAPH = './fine_tuned_model/frozen_inference_graph.pb'
     PATH_TO_LABEL_MAP = './label_map.pbtxt'
     NUM_CLASSES = 4
-    MODEL_NAME = 'faster_rcnn_resnet101'
+    MODEL_NAME = 'faster_rcnn_inception'
     print("loading model from " + MODEL_NAME)
 
 
