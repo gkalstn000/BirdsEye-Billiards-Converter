@@ -4,9 +4,27 @@
 
 우리 결과 이미지 밑 짧은 소개
 
+## Index
+
+[프로젝트 구성원](#프로젝트-구성원)
+
+[Reference](#Reference)
+
+[개발환경](#개발환경)
+
+[개발 환경 구축](#개발-환경-구축)
+
+[Object Detection](#Object-Detection)
+
+[Get table's vertex cordinate](#Get-table's-vertex-cordinate)
+
+[Transform image to graphic](#Transform-image-to-graphic)
+
+[GUI](#GUI)
+
 ## 프로젝트 구성원
 
-마! 팀
+team **마!**
 
 [팀장 하민수](https://github.com/gkalstn000)
 
@@ -226,3 +244,5 @@ tensorflow 설치 확인
 ## Get table's vertex cordinate 
 
 ## Transform image to graphic
+
+## GUI
