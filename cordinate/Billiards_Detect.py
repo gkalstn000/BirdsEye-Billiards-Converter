@@ -209,22 +209,22 @@ def Red_Ball(img) :
 
 
 # 이미지 가져오기.
-img_color = cv.imread('./testing.jpg')
+#img_color = cv.imread('./testing.jpg')
 
-result,img = Detecting(img_color)#당구대 좌표
-result.append(Red_Ball(img_color))#빨간공 좌
+#result,img = Detecting(img_color)#당구대 좌표
+#result.append(Red_Ball(img_color))#빨간공 좌
 
 
-print(result)
+#print(result)
 
 
 #plt.figure(figsize=(10,8))
 #plt.imshow(img)
 
-cv.imshow('Result', img)
+#cv.imshow('Result', img)
 
-cv.waitKey(0)
-cv.destroyAllWindows()
+#cv.waitKey(0)
+#cv.destroyAllWindows()
 
 
 
