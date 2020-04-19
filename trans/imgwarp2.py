@@ -4,11 +4,8 @@ import cv2
 
 def warp(array):
 
-<<<<<<< HEAD
-    img_original2 = cv2.imread('base.png')
-=======
     img_original2 = cv2.imread('./trans/base.png')  # test3.jpg 파일을 img_original 변수에 저장
->>>>>>> 9a9683fe9d55e0cab75d9b16c39e9c76132d7eda
+
     img_result2 = cv2.resize(img_original2, dsize=(348,630), interpolation=cv2.INTER_AREA)
 
     width, height = 315, 612  # return 되는 이미지의 크기 값
@@ -29,7 +26,11 @@ def warp(array):
         brr.append(np.dot(M, temp))
         x = brr[i-4][0] / brr[i-4][2] + 18
         y = brr[i - 4][1] / brr[i - 4][2] + 18
+        if array[i][0] == 0 and array[i][1] == 0:
+            x, y = -10, -10
         ball_list.append((x, y))
+
+    print(ball_list)
 
     img_result2 = cv2.circle(img_result2, ball_list[0], 10, (255, 255, 255), -1)  # 해당 좌표값에 공 그리기
     img_result2 = cv2.circle(img_result2, ball_list[1], 10, (0, 0, 255), -1)
@@ -37,16 +38,12 @@ def warp(array):
 
     # return cv2.imshow("result2", img_result2)
 
-<<<<<<< HEAD
     cv2.imwrite("show_result.png", img_result2)
-
-=======
     cv2.imwrite("./test_image_result/results.png", img_result2)
-    
->>>>>>> 9a9683fe9d55e0cab75d9b16c39e9c76132d7eda
+
 # warp([(360, 683), (805, 554), (9, 310), (322, 312), (241, 518), (444, 487), (595, 466)])
 # warp([(23, 464), (817, 444), (226, 94), (525, 98), (226, 142), (384, 142), (539, 142)])
-# warp([(3, 346), (558, 501), (488, 85), (795, 99), (454, 156), (572, 139), (681, 121)])          # 위치 1-4
+# warp([(3, 346), (558, 501), (488, 85), (795, 99), (454, 156), (572, 139), (0,0)])          # 위치 1-4
 # warp([(236, 668), (827, 527), (26, 290), (347, 281), (356, 533), (417, 458), (468, 404)])
 # warp([(17, 533), (474, 692), (523, 365), (821, 393), (241, 475), (533, 606), (690, 481)])     # 위치 3-3
 # warp([(60, 533), (598, 654), (510, 355), (810, 368), (272, 467), (444, 491), (660, 525)])       # 위치 2-4
