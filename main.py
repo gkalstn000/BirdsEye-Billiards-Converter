@@ -49,6 +49,11 @@ all_points.append((points[2][0], points[2][1]))
 print('당구대', all_points[:4])
 print('당구공', all_points[4:])
 
+<<<<<<< HEAD
+final_image = iw.warp(all_points)
+img = Image.fromarray(final_image, 'RGB') 
+img.save('./test_image_result/result.jpeg')
+=======
 iw.warp(all_points)
 #img = Image.fromarray(final_image, 'RGB')
 #img.save('./test_image_result/results.jpeg')
@@ -57,4 +62,5 @@ iw.warp(all_points)
 #image_path = './test_images/img6.jpeg'
 sr.show_result(image_path)
 print("cost time :", time.time() - start)  # 현재시각 - 시작시간 = 실행 시간
+>>>>>>> 9a9683fe9d55e0cab75d9b16c39e9c76132d7eda
 
