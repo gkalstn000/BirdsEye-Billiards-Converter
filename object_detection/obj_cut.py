@@ -143,4 +143,8 @@ def single_image_cut(image_path) :
     
     return img
 
+image_path = '/Users/gkalstn/capstone/object_detection/special_case/img3.jpg'
+single_image_cut(image_path)
+cv2.imwrite('/Users/gkalstn/capstone/object_detection/special_res/img3.jpg', no_background)
+
 
