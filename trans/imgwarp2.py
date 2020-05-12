@@ -36,11 +36,11 @@ def warp(array):
     img_result2 = cv2.circle(img_result2, ball_list[1], 10, (0, 0, 255), -1)
     img_result2 = cv2.circle(img_result2, ball_list[2], 10, (0, 255, 255), -1)
 
-    # return cv2.imshow("result2", img_result2)
+    #return cv2.imshow("result2", img_result2)
 
-    cv2.imwrite("show_result.png", img_result2)
-    cv2.imwrite("./test_image_result/results.png", img_result2)
-
+    cv2.imwrite("./rererere/show_result.png", img_result2)
+    cv2.imwrite("./rererere/test_image_result/results.png", img_result2)
+    return img_result2
 # warp([(360, 683), (805, 554), (9, 310), (322, 312), (241, 518), (444, 487), (595, 466)])
 # warp([(23, 464), (817, 444), (226, 94), (525, 98), (226, 142), (384, 142), (539, 142)])
 # warp([(3, 346), (558, 501), (488, 85), (795, 99), (454, 156), (572, 139), (0,0)])          # 위치 1-4
@@ -48,4 +48,3 @@ def warp(array):
 # warp([(17, 533), (474, 692), (523, 365), (821, 393), (241, 475), (533, 606), (690, 481)])     # 위치 3-3
 # warp([(60, 533), (598, 654), (510, 355), (810, 368), (272, 467), (444, 491), (660, 525)])       # 위치 2-4
 
-cv2.waitKey(0)
