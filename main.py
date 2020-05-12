@@ -55,7 +55,7 @@ img = Image.fromarray(final_image, 'RGB')
 img.save('./test_image_result/result.jpeg')
 =======
 '''
-iw.warp(all_points)
+final_image = iw.warp(all_points)
 
 
 '''
