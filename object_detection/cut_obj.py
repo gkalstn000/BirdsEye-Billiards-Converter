@@ -10,7 +10,7 @@ import numpy as np
 #import sys
 #import os
 import tensorflow.compat.v1 as tf
-#import cv2
+import cv2
 
 from PIL import Image
 
@@ -142,8 +142,10 @@ def class_cordinate(output_dict) :
 
 def img_cut(image_path) : 
     image = Image.open(image_path)
+    (im_width, im_height) = image.size
     image = image.resize((845,526))
     image_np = load_image_into_numpy_array(image)
+    
     output_dict = run_inference_for_single_image(image_np, detection_graph)
     
     cordinates = class_cordinate(output_dict)
