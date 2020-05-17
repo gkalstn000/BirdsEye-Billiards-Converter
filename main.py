@@ -10,27 +10,53 @@ Created on Sun Mar  8 17:10:59 2020
 
 
 import numpy as np
-import cordinate.edge_detect as ed
-import cordinate.point_order as po
 #import sys
 #import os
-#import tensorflow.compat.v1 as tf
-#import cv2
-#from PIL import Image
+import tensorflow.compat.v1 as tf
+
+# if tf.__version__ < '1.4.0':
+#   raise ImportError('Please upgrade your tensorflow installation to v1.4.* or later!')
+from object_detection.utils import label_map_util
+
+
+import cordinate.edge_detect as ed
+import cordinate.point_order as po
 import object_detection.cut_obj as co
 import trans.imgwarp2 as iw
-#import trans.show_result as sr
 
 
 import time
 
 image_path = './test_images/img2.jpeg'
 
+PATH_TO_FROZEN_GRAPH = './object_detection/fine_tuned_model/frozen_inference_graph.pb'
+PATH_TO_LABEL_MAP = './object_detection/label_map.pbtxt'
+NUM_CLASSES = 4
+MODEL_NAME = 'faster_rnn_inception'
+
+detection_graph = tf.Graph()
+with detection_graph.as_default():
+    od_graph_def = tf.GraphDef()
+    with tf.gfile.GFile(PATH_TO_FROZEN_GRAPH, 'rb') as fid:
+        serialized_graph = fid.read()
+        od_graph_def.ParseFromString(serialized_graph)
+        tf.import_graph_def(od_graph_def, name='')
+        
+        
+label_map = label_map_util.load_labelmap(PATH_TO_LABEL_MAP)
+categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=NUM_CLASSES,
+                                                            use_display_name=True)
+category_index = label_map_util.create_category_index(categories)
+
+
+
+
+
 '''
 img_cut_part
 '''
 img_cut_time = time.time()
-result_dict = co.img_cut(image_path)
+result_dict = co.img_cut(image_path, detection_graph)
 image_np = result_dict['image_np']
 points = result_dict['points']
 print("img_cut_time :", time.time() - img_cut_time)

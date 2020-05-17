@@ -17,6 +17,13 @@ img_path = '/Users/gkalstn/capstone/object_detection/special_res/1.jpg'
 
 image_np = cv2.imread(img_path)
 '''
+
+
+
+
+
+
+
 def cord_edge(image_np) :
     h, w = image_np[:,:,0].shape
     
