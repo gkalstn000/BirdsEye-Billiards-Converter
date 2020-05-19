@@ -39,15 +39,15 @@ if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
 
 def write_video():
 
-    filename = './faster_rcnn_inception_400000step.avi'
+    filename = './faster_rcnn_inception_400000step.mp4'
 #    codec = cv2.VideoWriter_fourcc('W', 'M', 'V', '2')
-    codec = cv2.VideoWriter_fourcc(*'XVID')
-    cap = cv2.VideoCapture('./test_video/video3.mp4')
+    codec = cv2.VideoWriter_fourcc(*'MJPG')
+    cap = cv2.VideoCapture('./test_video/video5.mp4')
     framerate = round(cap.get(5),2)
     
     #w = int(cap.get(3))
     #h = int(cap.get(4))
-    w, h = 315, 612
+    w, h = 348, 630
     resolution = (w, h)
 
     VideoFileOutput = cv2.VideoWriter(filename, codec, framerate, resolution)    
@@ -80,24 +80,20 @@ def write_video():
             tf.import_graph_def(od_graph_def, name='')
     print("tempo build graph = " + str(time.time() - time_graph))
     
+            
     
     
     
-
+    
+    
     # ## Loading label map
 
-
+    ikk = []
     ################################
     
-    
     with tf.Session(graph=detection_graph) as sess:
-        with detection_graph.as_default():
-            
-            
-            
+        with detection_graph.as_default(): 
             while (cap.isOpened()):
-                
-                
                 time_loop = time.time()
                 print('processing frame number: ' + str(cap.get(1)))
                 time_captureframe = time.time()
@@ -163,32 +159,37 @@ def write_video():
                 points = result_dict['points']
 #                if i == 0 :
                 #cordinate part=======================================
-                result = np.array(ed.cord_edge(image_np))
-                result = po.point_order(result)
+                if cap.get(1) == 1.0 :
+                    try :
+                        result = np.array(ed.cord_edge(image_np))
+                        result = po.point_order(result)
+                    except Exception :
+                        continue
                 #=====================================================
                 
                 
-                all_points = [(result[0][1], result[0][0]),
-                              (result[2][1], result[2][0]),
-                              (result[1][1], result[1][0]),
-                              (result[3][1], result[3][0])]
+                    ikk += [(result[0][1], result[0][0]),
+                                  (result[2][1], result[2][0]),
+                                  (result[1][1], result[1][0]),
+                                  (result[3][1], result[3][0])]
+                    print('ikk : ', ikk)
+                
                 
                     
 #                print('all_points : ', all_points)
                 
-                balls = [(points[0][0], points[0][1]),
-                         (points[1][0], points[1][1]),
-                         (points[2][0], points[2][1])]
+                balls = [(points[0][0]/3, points[0][1]/3),
+                         (points[1][0]/3, points[1][1]/3),
+                         (points[2][0]/3, points[2][1]/3)]
                 
                 
                 
-                print('edge points : ', all_points)
-                print('balls : ', balls)
-                print('input : ', all_points+balls)
-                
+#                print('edge points : ', ikk)
+ #               print('balls : ', balls)
+  #              print('input : ', ikk+balls)
                 
  #               print('ball detect num : ', len(balls))
-                final_image = iw.warp(all_points+balls)
+                final_image = iw.warp(ikk+balls)
                 
                 cv2.imwrite('./vimages/img'+str(int(cap.get(1)))+'.jpg', final_image)
               
