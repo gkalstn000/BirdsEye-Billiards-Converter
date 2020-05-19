@@ -92,7 +92,12 @@ def write_video():
     
     with tf.Session(graph=detection_graph) as sess:
         with detection_graph.as_default():
+            
+            
+            
             while (cap.isOpened()):
+                
+                
                 time_loop = time.time()
                 print('processing frame number: ' + str(cap.get(1)))
                 time_captureframe = time.time()
@@ -122,6 +127,7 @@ def write_video():
                 output_dict = {'detection_boxes' : np.resize(boxes, (boxes.shape[1], boxes.shape[2])),
                                'detection_scores' : np.resize(scores, (scores.shape[1])),
                                'detection_classes' : np.resize(classes, classes.shape[1])}    
+                
                 
                 
                 
