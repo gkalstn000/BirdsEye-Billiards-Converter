@@ -85,7 +85,10 @@ img_path = '/Users/gkalstn/capstone/test_images/img0.jpeg'
 
 image_np = cv2.imread(img_path)
 '''
+
+
 def cord_edge(image_np) :
+    
     h, w = image_np[:,:,0].shape
     
     if (h > 1000) or (w > 1000) :

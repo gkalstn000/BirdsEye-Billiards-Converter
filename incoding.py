@@ -98,6 +98,8 @@ def write_video():
                 print('processing frame number: ' + str(cap.get(1)))
                 time_captureframe = time.time()
                 ret, image_np = cap.read()
+                
+                
                 print("time to capture video frame = " + str(time.time() - time_captureframe))
                 if (ret != True):
                     break
@@ -143,10 +145,11 @@ def write_video():
                 c = absolute_coord[0]
                 bounding_box_img = image_np[c[1]:c[3], c[0]:c[2],:]
     
-    
-                red = [(absolute_coord[1][0]+absolute_coord[1][2])//2 - c[0], (absolute_coord[1][1]+absolute_coord[1][3])//2 - c[1]]
-                white = [(absolute_coord[2][0]+absolute_coord[2][2])//2 - c[0], (absolute_coord[2][1]+absolute_coord[2][3])//2 - c[1]]
-                yellow = [(absolute_coord[3][0]+absolute_coord[3][2])//2 - c[0], (absolute_coord[3][1]+absolute_coord[3][3])//2 - c[1]]
+                
+                #[h, w]
+                red = [(absolute_coord[1][1]+absolute_coord[1][3])//2 , (absolute_coord[1][0]+absolute_coord[1][2])//2 ]
+                white = [(absolute_coord[2][1]+absolute_coord[2][3])//2  , (absolute_coord[2][0]+absolute_coord[2][2])//2 ]
+                yellow = [(absolute_coord[3][1]+absolute_coord[3][3])//2 , (absolute_coord[3][0]+absolute_coord[3][2])//2 ]
     
         
                 points = [white, red, yellow]
@@ -168,10 +171,10 @@ def write_video():
                 #=====================================================
                 
                 
-                    ikk += [(result[0][1], result[0][0]),
-                                  (result[2][1], result[2][0]),
-                                  (result[1][1], result[1][0]),
-                                  (result[3][1], result[3][0])]
+                    ikk += [(result[0][0] + c[1]/3, result[0][1] + c[0]/3),
+                            (result[2][0] + c[1]/3, result[2][1] + c[0]/3),
+                            (result[1][0] + c[1]/3, result[1][1] + c[0]/3),
+                            (result[3][0] + c[1]/3, result[3][1] + c[0]/3)]
                     print('ikk : ', ikk)
                 
                 
@@ -184,8 +187,8 @@ def write_video():
                 
                 
                 
-#                print('edge points : ', ikk)
- #               print('balls : ', balls)
+                print('edge points : ', ikk)
+                print('balls : ', balls)
   #              print('input : ', ikk+balls)
                 
  #               print('ball detect num : ', len(balls))
