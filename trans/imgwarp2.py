@@ -4,7 +4,7 @@ import cv2
 
 def warp(array):
 
-    img_original2 = cv2.imread('./trans/base.png')  # test3.jpg 파일을 img_original 변수에 저장
+    img_original2 = cv2.imread('./trans/base.jpeg')  # test3.jpg 파일을 img_original 변수에 저장
 
     img_result2 = cv2.resize(img_original2, dsize=(348,630), interpolation=cv2.INTER_AREA)
 

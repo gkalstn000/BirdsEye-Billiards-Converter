@@ -33,7 +33,13 @@ if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
   raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')
 
 
-
+def ball_cord(cord) :
+    w1, h1, w2, h2 = cord
+    
+    p1 = np.array([h2, w2])
+    p2 = np.array([h2, w1])
+    
+    return p1+p2/2
 
 #Detection using tensorflow inside write_video function
 
@@ -147,10 +153,9 @@ def write_video():
     
                 
                 #[h, w]
-                red = [(absolute_coord[1][1]+absolute_coord[1][3])//2 , (absolute_coord[1][0]+absolute_coord[1][2])//2 ]
-                white = [(absolute_coord[2][1]+absolute_coord[2][3])//2  , (absolute_coord[2][0]+absolute_coord[2][2])//2 ]
-                yellow = [(absolute_coord[3][1]+absolute_coord[3][3])//2 , (absolute_coord[3][0]+absolute_coord[3][2])//2 ]
-    
+                red = [absolute_coord[1][3] , (absolute_coord[1][0]+absolute_coord[1][2])//2 ]
+                white = [absolute_coord[2][3] , (absolute_coord[2][0]+absolute_coord[2][2])//2 ]
+                yellow = [absolute_coord[3][3] , (absolute_coord[3][0]+absolute_coord[3][2])//2 ]
         
                 points = [white, red, yellow]
     
