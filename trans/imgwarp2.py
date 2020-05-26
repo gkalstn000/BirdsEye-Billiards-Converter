@@ -24,8 +24,8 @@ def warp(array):
         temp = np.reshape(temp, (3, 1))
 
         brr.append(np.dot(M, temp))
-        x = brr[i-4][0] / brr[i-4][2] + 18
-        y = brr[i - 4][1] / brr[i - 4][2] + 18
+        x = brr[i-4][0] / brr[i-4][2]# + 18
+        y = brr[i - 4][1] / brr[i - 4][2]# + 18
         if array[i][0] == 0 and array[i][1] == 0:
             x, y = -10, -10
         ball_list.append((x, y))

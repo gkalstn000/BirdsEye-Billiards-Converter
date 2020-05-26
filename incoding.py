@@ -23,6 +23,11 @@ import trans.imgwarp2 as iw
 
 
 
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
 
 
 #This is needed since the code is stored in the object_detection    folder.
@@ -42,7 +47,7 @@ def write_video():
     filename = './faster_rcnn_inception_400000step.avi'
 #    codec = cv2.VideoWriter_fourcc('W', 'M', 'V', '2')
     codec = cv2.VideoWriter_fourcc(*'XVID')
-    cap = cv2.VideoCapture('./test_video/video3.mp4')
+    cap = cv2.VideoCapture('./test_video/video1.mp4')
     framerate = round(cap.get(5),2)
     
     #w = int(cap.get(3))
@@ -91,8 +96,10 @@ def write_video():
     
     
     with tf.Session(graph=detection_graph) as sess:
-        with detection_graph.as_default():
+        with detection_graph.as_default():            
             while (cap.isOpened()):
+                
+                
                 time_loop = time.time()
                 print('processing frame number: ' + str(cap.get(1)))
                 time_captureframe = time.time()
@@ -100,6 +107,7 @@ def write_video():
                 print("time to capture video frame = " + str(time.time() - time_captureframe))
                 if (ret != True):
                     break
+                
                 #image cut part=========================================
   #              output_dict = co.run_inference_for_single_image(image_np, detection_graph)
                         # Read frame from camera
@@ -115,6 +123,7 @@ def write_video():
                 classes = detection_graph.get_tensor_by_name('detection_classes:0')
                 # Extract number of detections
                 # Actual detection.
+               
             
                 (boxes, scores, classes) = sess.run(
                     [boxes, scores, classes],
@@ -170,9 +179,9 @@ def write_video():
                     
 #                print('all_points : ', all_points)
                 
-                balls = [(points[0][0], points[0][1]),
-                         (points[1][0], points[1][1]),
-                         (points[2][0], points[2][1])]
+                balls = [(points[0][0]/2, points[0][1]/2),
+                         (points[1][0]/2, points[1][1]/2),
+                         (points[2][0]/2, points[2][1]/2)]
                 
                 
                 
