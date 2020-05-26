@@ -38,21 +38,32 @@ if StrictVersion(tf.__version__) < StrictVersion('1.9.0'):
   raise ImportError('Please upgrade your TensorFlow installation to v1.9.* or later!')
 
 
-
+def ball_cord(cord) :
+    w1, h1, w2, h2 = cord
+    
+    p1 = np.array([h2, w2])
+    p2 = np.array([h2, w1])
+    
+    return p1+p2/2
 
 #Detection using tensorflow inside write_video function
 
 def write_video():
 
-    filename = './faster_rcnn_inception_400000step.avi'
+    filename = './faster_rcnn_inception_400000step.mp4'
 #    codec = cv2.VideoWriter_fourcc('W', 'M', 'V', '2')
+<<<<<<< HEAD
     codec = cv2.VideoWriter_fourcc(*'XVID')
     cap = cv2.VideoCapture('./test_video/video1.mp4')
+=======
+    codec = cv2.VideoWriter_fourcc(*'MJPG')
+    cap = cv2.VideoCapture('./test_video/video5.mp4')
+>>>>>>> 4d98d3155f3898766a74db6c65cd60c52c433930
     framerate = round(cap.get(5),2)
     
     #w = int(cap.get(3))
     #h = int(cap.get(4))
-    w, h = 315, 612
+    w, h = 348, 630
     resolution = (w, h)
 
     VideoFileOutput = cv2.VideoWriter(filename, codec, framerate, resolution)    
@@ -85,18 +96,23 @@ def write_video():
             tf.import_graph_def(od_graph_def, name='')
     print("tempo build graph = " + str(time.time() - time_graph))
     
+            
     
     
     
-
+    
+    
     # ## Loading label map
 
-
+    ikk = []
     ################################
     
-    
     with tf.Session(graph=detection_graph) as sess:
+<<<<<<< HEAD
         with detection_graph.as_default():            
+=======
+        with detection_graph.as_default(): 
+>>>>>>> 4d98d3155f3898766a74db6c65cd60c52c433930
             while (cap.isOpened()):
                 
                 
@@ -104,6 +120,8 @@ def write_video():
                 print('processing frame number: ' + str(cap.get(1)))
                 time_captureframe = time.time()
                 ret, image_np = cap.read()
+                
+                
                 print("time to capture video frame = " + str(time.time() - time_captureframe))
                 if (ret != True):
                     break
@@ -134,6 +152,7 @@ def write_video():
                 
                 
                 
+                
                 cordinates = co.class_cordinate(output_dict)
                 img_height, img_width, img_channel = image_np.shape
                 absolute_coord = []
@@ -150,11 +169,11 @@ def write_video():
                 c = absolute_coord[0]
                 bounding_box_img = image_np[c[1]:c[3], c[0]:c[2],:]
     
-    
-                red = [(absolute_coord[1][0]+absolute_coord[1][2])//2 - c[0], (absolute_coord[1][1]+absolute_coord[1][3])//2 - c[1]]
-                white = [(absolute_coord[2][0]+absolute_coord[2][2])//2 - c[0], (absolute_coord[2][1]+absolute_coord[2][3])//2 - c[1]]
-                yellow = [(absolute_coord[3][0]+absolute_coord[3][2])//2 - c[0], (absolute_coord[3][1]+absolute_coord[3][3])//2 - c[1]]
-    
+                
+                #[h, w]
+                red = [absolute_coord[1][3] , (absolute_coord[1][0]+absolute_coord[1][2])//2 ]
+                white = [absolute_coord[2][3] , (absolute_coord[2][0]+absolute_coord[2][2])//2 ]
+                yellow = [absolute_coord[3][3] , (absolute_coord[3][0]+absolute_coord[3][2])//2 ]
         
                 points = [white, red, yellow]
     
@@ -166,32 +185,46 @@ def write_video():
                 points = result_dict['points']
 #                if i == 0 :
                 #cordinate part=======================================
-                result = np.array(ed.cord_edge(image_np))
-                result = po.point_order(result)
+                if cap.get(1) == 1.0 :
+                    try :
+                        result = np.array(ed.cord_edge(image_np))
+                        result = po.point_order(result)
+                    except Exception :
+                        continue
                 #=====================================================
                 
                 
-                all_points = [(result[0][1], result[0][0]),
-                              (result[2][1], result[2][0]),
-                              (result[1][1], result[1][0]),
-                              (result[3][1], result[3][0])]
+                    ikk += [(result[0][0] + c[1]/3, result[0][1] + c[0]/3),
+                            (result[2][0] + c[1]/3, result[2][1] + c[0]/3),
+                            (result[1][0] + c[1]/3, result[1][1] + c[0]/3),
+                            (result[3][0] + c[1]/3, result[3][1] + c[0]/3)]
+                    print('ikk : ', ikk)
+                
                 
                     
 #                print('all_points : ', all_points)
                 
+<<<<<<< HEAD
                 balls = [(points[0][0]/2, points[0][1]/2),
                          (points[1][0]/2, points[1][1]/2),
                          (points[2][0]/2, points[2][1]/2)]
+=======
+                balls = [(points[0][0]/3, points[0][1]/3),
+                         (points[1][0]/3, points[1][1]/3),
+                         (points[2][0]/3, points[2][1]/3)]
+>>>>>>> 4d98d3155f3898766a74db6c65cd60c52c433930
                 
                 
                 
-                print('edge points : ', all_points)
+                print('edge points : ', ikk)
                 print('balls : ', balls)
-                print('input : ', all_points+balls)
-                
+  #              print('input : ', ikk+balls)
                 
  #               print('ball detect num : ', len(balls))
-                final_image = iw.warp(all_points+balls)
+                try :
+                    final_image = iw.warp(ikk+balls)
+                except Exception :
+                    continue
                 
                 cv2.imwrite('./vimages/img'+str(int(cap.get(1)))+'.jpg', final_image)
               

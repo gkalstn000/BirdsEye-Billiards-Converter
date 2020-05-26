@@ -27,7 +27,7 @@ import trans.imgwarp2 as iw
 
 import time
 
-image_path = './test_images/img2.jpeg'
+image_path = './test_images/img3.jpeg'
 
 PATH_TO_FROZEN_GRAPH = './object_detection/fine_tuned_model/frozen_inference_graph.pb'
 PATH_TO_LABEL_MAP = './object_detection/label_map.pbtxt'
@@ -86,7 +86,7 @@ all_points.append((points[2][0], points[2][1]))
 
 
 final_image = iw.warp(all_points)
-# cv2.imshow('test',final_image)
+#cv2.imshow('test',final_image)
 
 # cv2.waitKey(0)
 # cv2.destroyAllWindows()

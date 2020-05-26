@@ -28,19 +28,25 @@ def test_line_num(point_lists) :
             
     
     print('1 lines detected')
+    
     return 0
 
 
 def equation(point_list1, point_list2) :
-    x11 = point_list1[0][0]
-    y11 = point_list1[0][1]
-    x12 = point_list1[1][0]
-    y12 = point_list1[1][1]
+    try :
+        x11 = point_list1[0][0]
+        y11 = point_list1[0][1]
+        x12 = point_list1[1][0]
+        y12 = point_list1[1][1]
     
-    x21 = point_list2[0][0]
-    y21 = point_list2[0][1]
-    x22 = point_list2[1][0]
-    y22 = point_list2[1][1]
+        x21 = point_list2[0][0]
+        y21 = point_list2[0][1]
+        x22 = point_list2[1][0]
+        y22 = point_list2[1][1]
+    except IndexError :
+        print('pl1 : ', point_list1)
+        print('pl2 : ', point_list2)
+        return None
     
     A = np.array([[y12-y11, -x12+x11],
                   [y22-y21, -x22+x21]])    
@@ -59,7 +65,7 @@ def graph_(lists) :
     y = []
     for i in lists :
         x.append(i[1])
-        y.append(i[0])
+        y.append(-i[0])
     plt.plot(x,  # x
              y,  # y 
              linestyle='none', 
@@ -79,7 +85,10 @@ img_path = '/Users/gkalstn/capstone/test_images/img0.jpeg'
 
 image_np = cv2.imread(img_path)
 '''
+
+
 def cord_edge(image_np) :
+    
     h, w = image_np[:,:,0].shape
     
     if (h > 1000) or (w > 1000) :
@@ -90,7 +99,7 @@ def cord_edge(image_np) :
 
     for i in range(h) :
         for j in range(w) :
-            if (image_np[i,j,0] > image_np[i,j,1]) and (image_np[i,j,1] > image_np[i,j,2] and (image_np[i,j,0] >= 190)) and (image_np[i,j,2]<170):
+            if (image_np[i,j,0] > image_np[i,j,1]) and (image_np[i,j,1] > image_np[i,j,2] and (image_np[i,j,0] -image_np[i, j, 1] > 70)) and (image_np[i,j,2]<170):
                 no_background[i, j] = image_np[i, j, 0]
 
         
@@ -103,8 +112,8 @@ def cord_edge(image_np) :
 
 
 
-    w_list = np.linspace(0, w-1, 17)
-    h_list = np.linspace(0, h-1, 17)
+    w_list = np.linspace(0, w-1, 30)
+    h_list = np.linspace(0, h-1, 30)
 
 
     bot = []
@@ -136,17 +145,19 @@ def cord_edge(image_np) :
     s3 = []
     s4 = []
 
+
     print('bot detect ', end='')
     piv1 = test_line_num(bot)
     print('top detect ', end='')
     piv2 = test_line_num(top)
+    
 
 
     if piv1 == 0 :
         s1 = bot
         if top[0][0] < top[-1][0] : # 윗변의 왼쪽이 더 높은것
-            s2 += top[:piv2]
-            s3 += top[piv2+4:]
+            s3 += top[:piv2]
+            s2 += top[piv2+4:]
         
             for i in h_list :
                 i = int(i)
@@ -156,12 +167,13 @@ def cord_edge(image_np) :
                     continue
     
                 for j in range(w) :
-                    if no_background[h-1-i, j] == 200 :
-                        s4.append([h-1-i, j])
+                    if no_background[i, j] == 200 :
+                        s4.append([i, j])
                         break
         else :
-            s3 += top[:piv2]
-            s2 += top[piv2+4:]
+            s2 += top[:piv2]
+            s3 += top[piv2+4:]
+            
             for i in h_list :
                 i = int(i)
                 lists = no_background[i, :].tolist()
@@ -170,8 +182,8 @@ def cord_edge(image_np) :
                     continue
     
                 for j in range(w) :
-                    if no_background[h-1-i, w-1-j] == 200 :
-                        s4.append([h-1-i, w-1-j])
+                    if no_background[i, w-1-j] == 200 :
+                        s4.append([i, w-1-j])
                         break        
 
         
@@ -182,9 +194,17 @@ def cord_edge(image_np) :
         s2 += bot[piv1+4:]
         s4 += top[:piv2]
         s3 += top[piv2+4:]
+    '''
+    print('s1 : ', s1)
+    print('s2 : ', s2)
+    print('s3 : ', s3)
+    print('s4 : ', s4)
     
-    
-
+    print('s1 : ', graph_(s1))
+    print('s2 : ', graph_(s2))
+    print('s3 : ', graph_(s3))
+    print('s4 : ', graph_(s4))
+    '''
     p1 = equation(s1, s2)
     p2 = equation(s2, s3)
     p3 = equation(s3, s4)
