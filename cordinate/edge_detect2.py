@@ -66,6 +66,8 @@ def graph_(lists) :
     for i in lists :
         x.append(i[1])
         y.append(-i[0])
+        
+    
     plt.plot(x,  # x
              y,  # y 
              linestyle='none', 
@@ -73,12 +75,13 @@ def graph_(lists) :
              markersize=10,
              color='blue', 
              alpha=0.5)
-    plt.show()
     
+
     
+        
     
-    
-    
+    plt.savefig('./graph/savefig_default.png')
+    plt.close()
     
 '''    
 img_path = '/Users/gkalstn/capstone/test_images/img0.jpeg'

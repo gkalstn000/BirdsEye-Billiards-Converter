@@ -52,13 +52,10 @@ def write_video():
 
     filename = './faster_rcnn_inception_400000step.mp4'
 #    codec = cv2.VideoWriter_fourcc('W', 'M', 'V', '2')
-<<<<<<< HEAD
-    codec = cv2.VideoWriter_fourcc(*'XVID')
-    cap = cv2.VideoCapture('./test_video/video1.mp4')
-=======
+
     codec = cv2.VideoWriter_fourcc(*'MJPG')
     cap = cv2.VideoCapture('./test_video/video5.mp4')
->>>>>>> 4d98d3155f3898766a74db6c65cd60c52c433930
+
     framerate = round(cap.get(5),2)
     
     #w = int(cap.get(3))
@@ -108,11 +105,9 @@ def write_video():
     ################################
     
     with tf.Session(graph=detection_graph) as sess:
-<<<<<<< HEAD
-        with detection_graph.as_default():            
-=======
+
         with detection_graph.as_default(): 
->>>>>>> 4d98d3155f3898766a74db6c65cd60c52c433930
+
             while (cap.isOpened()):
                 
                 
@@ -204,20 +199,16 @@ def write_video():
                     
 #                print('all_points : ', all_points)
                 
-<<<<<<< HEAD
-                balls = [(points[0][0]/2, points[0][1]/2),
-                         (points[1][0]/2, points[1][1]/2),
-                         (points[2][0]/2, points[2][1]/2)]
-=======
+
                 balls = [(points[0][0]/3, points[0][1]/3),
                          (points[1][0]/3, points[1][1]/3),
                          (points[2][0]/3, points[2][1]/3)]
->>>>>>> 4d98d3155f3898766a74db6c65cd60c52c433930
+
                 
                 
                 
-                print('edge points : ', ikk)
-                print('balls : ', balls)
+  #              print('edge points : ', ikk)
+   #             print('balls : ', balls)
   #              print('input : ', ikk+balls)
                 
  #               print('ball detect num : ', len(balls))
