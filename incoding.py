@@ -214,7 +214,9 @@ def write_video():
  #               print('ball detect num : ', len(balls))
                 try :
                     final_image = iw.warp(ikk+balls)
-                except Exception :
+                except Exception as e:
+ #                   print(ikk+balls)
+  #                  print(e)
                     continue
                 
                 cv2.imwrite('./vimages/img'+str(int(cap.get(1)))+'.jpg', final_image)

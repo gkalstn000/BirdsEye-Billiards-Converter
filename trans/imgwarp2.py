@@ -1,5 +1,49 @@
-import numpy as np
+#import numpy as np
 import cv2
+import math
+#
+
+
+def transcord(h, w, ball_point, billiard):
+
+    a = ball_point[0]
+    b = ball_point[1]
+
+    a2 = (billiard[2][0] - a) * (billiard[3][1] - billiard[2][1]) - \
+         (billiard[2][1] - b) * (billiard[3][0] - billiard[2][0])
+    b2 = (billiard[2][0] - a) * (billiard[1][1] - billiard[0][1]) + (billiard[0][0] - a) * \
+         (billiard[3][1] - billiard[2][1]) - (billiard[2][1] - b) * (billiard[1][0] - billiard[0][0]) - \
+         (billiard[0][1] - b) * (billiard[3][0] - billiard[2][0])
+    c = (billiard[0][0] - a) * (billiard[1][1] - billiard[0][1]) - (billiard[0][1] - b) * \
+        (billiard[1][0] - billiard[0][0])
+
+    k = b2**2 - 4*a2*c
+    
+    if k > 0:
+        m = (b2*(-1) + math.sqrt(k)) / (2*a2)
+        if m < 0:
+            m = (b2 * (-1) - math.sqrt(k)) / (2 * a2)
+
+    a2 = (billiard[1][0] - a) * (billiard[3][1] - billiard[1][1]) - (billiard[1][1] - b) * \
+         (billiard[3][0] - billiard[1][0])
+    b2 = (billiard[1][0] - a) * (billiard[2][1] - billiard[0][1]) + (billiard[0][0] - a) * \
+         (billiard[3][1] - billiard[1][1]) - (billiard[1][1] - b) * (billiard[2][0] - billiard[0][0]) - \
+         (billiard[0][1] - b) * (billiard[3][0] - billiard[1][0])
+    c = (billiard[0][0] - a) * (billiard[2][1] - billiard[0][1]) - (billiard[0][1] - b) * \
+        (billiard[2][0] - billiard[0][0])
+    
+    k = b2**2 - 4*a2*c
+
+    if k > 0:
+        n = (b2*(-1) + math.sqrt(k)) / (2*a2)
+        if n < 0:
+            n = (b2*(-1) - math.sqrt(k)) / (2*a2)
+
+    h2 = h * m / (m+n)
+    w2 = w * n / (m+n)
+
+    return (w2, h2)
+
 
 
 def warp(array):
@@ -8,8 +52,10 @@ def warp(array):
 
     img_result2 = cv2.resize(img_original2, dsize=(348,630), interpolation=cv2.INTER_AREA)
 
-    width, height = 315, 612  # return 되는 이미지의 크기 값
-
+#    width, height = 315, 612  # return 되는 이미지의 크기 값
+    height, width = 612, 315
+    
+    '''
     # 좌표 순서 - 상단왼쪽 끝, 상단오른쪽 끝, 하단왼쪽 끝, 하단오른쪽 끝
     pts1 = np.float32([list(array[0]), list(array[1]), list(array[2]), list(array[3])])
     pts2 = np.float32([[0, 0], [width, 0], [0, height], [width, height]])
@@ -34,10 +80,20 @@ def warp(array):
             x, y = -10, -10
         ball_list.append((x, y))
 
+    '''
+    
+    billiard = array[:4]
+    ball_point = array[4:]
 
-    img_result2 = cv2.circle(img_result2, ball_list[0], 10, (255, 255, 255), -1)  # 해당 좌표값에 공 그리기
-    img_result2 = cv2.circle(img_result2, ball_list[1], 10, (0, 0, 255), -1)
-    img_result2 = cv2.circle(img_result2, ball_list[2], 10, (0, 255, 255), -1)
+    ball_list = []
+    ball_list.append(transcord(height, width, ball_point[0], billiard ))
+    ball_list.append(transcord(height, width, ball_point[1], billiard ))
+    ball_list.append(transcord(height, width, ball_point[2], billiard ))
+    
+    print(ball_list)
+    img_result2 = cv2.circle(img_result2, (int(ball_list[0][0]), int(ball_list[0][1])), 10, (255, 255, 255), -1)  # 해당 좌표값에 공 그리기
+    img_result2 = cv2.circle(img_result2, (int(ball_list[1][0]), int(ball_list[1][1])), 10, (0, 0, 255), -1)
+    img_result2 = cv2.circle(img_result2, (int(ball_list[2][0]), int(ball_list[2][1])), 10, (0, 255, 255), -1)
 
     #return cv2.imshow("result2", img_result2)
 
