@@ -16,6 +16,10 @@ def warp(array):
 
     M = cv2.getPerspectiveTransform(pts1, pts2)  # pts1의 좌표를 pts2의 좌표로 변환 시킬 변수 M 설정
 
+    print("좌상단 : ", np.dot(M, pts1[0]))
+    print("우상단 : ", np.dot(M, pts1[1]))
+    print("좌하단 : ", np.dot(M, pts1[2]))
+    print("좌하단 : ", np.dot(M, pts1[3]))
     ball_list = []
 
     brr = []
