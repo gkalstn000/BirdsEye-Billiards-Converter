@@ -4,7 +4,7 @@ import cv2
 
 def warp(array):
 
-    img_original2 = cv2.imread('./trans/base.png')  # test3.jpg 파일을 img_original 변수에 저장
+    img_original2 = cv2.imread('./trans/base.jpeg')  # test3.jpg 파일을 img_original 변수에 저장
 
     img_result2 = cv2.resize(img_original2, dsize=(348,630), interpolation=cv2.INTER_AREA)
 
@@ -15,7 +15,7 @@ def warp(array):
     pts2 = np.float32([[0, 0], [width, 0], [0, height], [width, height]])
 
     M = cv2.getPerspectiveTransform(pts1, pts2)  # pts1의 좌표를 pts2의 좌표로 변환 시킬 변수 M 설정
-    
+    #print(M)
 #    print('왼상단 : ', np.dot(M, pts1[0]))
 #    print('우상단 : ', np.dot(M, pts1[1]))
 #    print('왼하단 : ", np.dot(M, pts1[2]))

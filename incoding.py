@@ -219,7 +219,7 @@ def write_video():
                 
                 cv2.imwrite('./vimages/img'+str(int(cap.get(1)))+'.jpg', final_image)
               
-                print('final_image shape : ', final_image.shape)
+              #  print('final_image shape : ', final_image.shape)
                 time_writeframe = time.time()
                 VideoFileOutput.write(final_image)
                 print("time to write a frame in video file = " + str(time.time() - time_writeframe))
