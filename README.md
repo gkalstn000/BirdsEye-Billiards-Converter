@@ -198,7 +198,7 @@ tensorflow 설치 확인
 >     min_cuda_compute_capability=None
 > )
 > 
-> #resule
+> #result
 > """
 > 2020-04-15 23:22:22.199264: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
 > 2020-04-15 23:22:22.219929: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3600000000 Hz

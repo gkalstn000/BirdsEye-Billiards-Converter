@@ -23,6 +23,11 @@ import trans.imgwarp2 as iw
 
 
 
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
 
 
 #This is needed since the code is stored in the object_detection    folder.
@@ -47,8 +52,10 @@ def write_video():
 
     filename = './faster_rcnn_inception_400000step.mp4'
 #    codec = cv2.VideoWriter_fourcc('W', 'M', 'V', '2')
+
     codec = cv2.VideoWriter_fourcc(*'MJPG')
     cap = cv2.VideoCapture('./test_video/video5.mp4')
+
     framerate = round(cap.get(5),2)
     
     #w = int(cap.get(3))
@@ -98,8 +105,12 @@ def write_video():
     ################################
     
     with tf.Session(graph=detection_graph) as sess:
+
         with detection_graph.as_default(): 
+
             while (cap.isOpened()):
+                
+                
                 time_loop = time.time()
                 print('processing frame number: ' + str(cap.get(1)))
                 time_captureframe = time.time()
@@ -109,6 +120,7 @@ def write_video():
                 print("time to capture video frame = " + str(time.time() - time_captureframe))
                 if (ret != True):
                     break
+                
                 #image cut part=========================================
   #              output_dict = co.run_inference_for_single_image(image_np, detection_graph)
                         # Read frame from camera
@@ -124,6 +136,7 @@ def write_video():
                 classes = detection_graph.get_tensor_by_name('detection_classes:0')
                 # Extract number of detections
                 # Actual detection.
+               
             
                 (boxes, scores, classes) = sess.run(
                     [boxes, scores, classes],
@@ -186,25 +199,29 @@ def write_video():
                     
 #                print('all_points : ', all_points)
                 
+
                 balls = [(points[0][0]/3, points[0][1]/3),
                          (points[1][0]/3, points[1][1]/3),
                          (points[2][0]/3, points[2][1]/3)]
+
                 
                 
                 
-                print('edge points : ', ikk)
-                print('balls : ', balls)
+  #              print('edge points : ', ikk)
+   #             print('balls : ', balls)
   #              print('input : ', ikk+balls)
                 
  #               print('ball detect num : ', len(balls))
                 try :
                     final_image = iw.warp(ikk+balls)
-                except Exception :
+                except Exception as e:
+ #                   print(ikk+balls)
+  #                  print(e)
                     continue
                 
                 cv2.imwrite('./vimages/img'+str(int(cap.get(1)))+'.jpg', final_image)
               
-                print('final_image shape : ', final_image.shape)
+              #  print('final_image shape : ', final_image.shape)
                 time_writeframe = time.time()
                 VideoFileOutput.write(final_image)
                 print("time to write a frame in video file = " + str(time.time() - time_writeframe))
