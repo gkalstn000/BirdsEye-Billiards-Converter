@@ -23,11 +23,11 @@ import trans.imgwarp2 as iw
 
 
 
-from tensorflow.compat.v1 import ConfigProto
-from tensorflow.compat.v1 import InteractiveSession
-config = ConfigProto()
-config.gpu_options.allow_growth = True
-session = InteractiveSession(config=config)
+#from tensorflow.compat.v1 import ConfigProto
+#from tensorflow.compat.v1 import InteractiveSession
+#config = ConfigProto()
+#config.gpu_options.allow_growth = True
+#session = InteractiveSession(config=config)
 
 
 #This is needed since the code is stored in the object_detection    folder.
@@ -54,7 +54,7 @@ def write_video():
 #    codec = cv2.VideoWriter_fourcc('W', 'M', 'V', '2')
 
     codec = cv2.VideoWriter_fourcc(*'MJPG')
-    cap = cv2.VideoCapture('./test_video/video5.mp4')
+    cap = cv2.VideoCapture('./test_video/video11.mp4')
 
     framerate = round(cap.get(5),2)
     

@@ -11,8 +11,8 @@ import numpy as np
 #import os
 import tensorflow.compat.v1 as tf
 from PIL import Image
-physical_devices = tf.config.experimental.list_physical_devices('GPU')
-tf.config.experimental.set_memory_growth(physical_devices[0], True)
+#physical_devices = tf.config.experimental.list_physical_devices('GPU')
+#tf.config.experimental.set_memory_growth(physical_devices[0], True)
 # if tf.__version__ < '1.4.0':
 #   raise ImportError('Please upgrade your tensorflow installation to v1.4.* or later!')
 #from object_detection.utils import visualization_utils as vis_util
