@@ -28,7 +28,7 @@ team **마!**
 
 [팀장 하민수](https://github.com/gkalstn000)
 
-[팀원 김건기](https://github.com/Keon)
+[팀원 김건기](https://github.com/KEON-KIM)
 
 [팀원 백승헌](https://github.com/SeungHune)
 
