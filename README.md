@@ -227,8 +227,7 @@ Faster RCNN Inception model을 활용해 Table edge, ball 좌표값 확보.
 Raw 좌표값을 수직 view 로 transform 하기 위해 자체 알고리즘 개발.
 
 * openCV [warpAffine](https://opencv-python.readthedocs.io/en/latest/doc/10.imageTransformation/imageTransformation.html) 변환 라이브러리보다 더 높은 정밀도
-
-- <iframe width="3440" height="1150" src="https://www.youtube.com/embed/qnMxNfZViCY" title="compare" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  - [자체 개발 알고리즘과 openCV warpAffine 성능 비교 영상](https://www.youtube.com/embed/qnMxNfZViCY)
 
 - **좌**: openCV `warpAffine()` 라이브러리, **우**: 자체 개발 선형 변환 알고리즘
 
