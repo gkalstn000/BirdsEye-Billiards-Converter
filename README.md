@@ -1,26 +1,10 @@
 * content
 {:toc}
-# capstone : 3-cusion Vertical transformation
+# **BirdsEye Billiards Converter**
 
-우리 결과 이미지 밑 짧은 소개
+![image-20231113111232961](/imgs/image-20230522104407665.png)
 
-## Index
 
-[프로젝트 구성원](#프로젝트-구성원)
-
-[Reference](#Reference)
-
-[개발환경](#개발환경)
-
-[개발 환경 구축](#개발-환경-구축)
-
-[Object Detection](#Object-Detection)
-
-[Get table's vertex cordinate](#Get-table's-vertex-cordinate)
-
-[Transform image to graphic](#Transform-image-to-graphic)
-
-[GUI](#GUI)
 
 ## 프로젝트 구성원
 
@@ -36,13 +20,7 @@ team **마!**
 
 지도교수 마상백
 
-## Reference
 
-[CUDA 10.0 설치]([https://teddylee777.github.io/linux/CUDA-%EC%9D%B4%EC%A0%84%EB%B2%84%EC%A0%84-%EC%82%AD%EC%A0%9C%ED%9B%84-%EC%9E%AC%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0](https://teddylee777.github.io/linux/CUDA-이전버전-삭제후-재설치하기))
-
-[Object Detection 학습](https://towardsdatascience.com/detailed-tutorial-build-your-custom-real-time-object-detector-5ade1017fd2d#862a)
-
-[video detect](https://github.com/tensorflow/models/issues/6684)
 
 ## 개발 환경
 
@@ -66,7 +44,7 @@ tensorflow : 1.15
 
 ## 개발 환경 구축
 
-tensorflow 1.15와 호환되는 CUDA는 10.0 미만 버전이기 때문에 최신 CUDA가 아닌 10.0 버전을 설치합니다.
+tensorflow 1.15와 호환되는 CUDA는 10.0 미만 버전이기 때문에 최신 CUDA가 아닌 10.0 버전을 설치.
 
 ### STEP 1. 기존에 설치된 CUDA 제거
 
@@ -152,7 +130,6 @@ tensorflow 1.15와 호환되는 CUDA는 10.0 미만 버전이기 때문에 최�
 > bash Anaconda3-2019.10-Linux-x86_64.sh
 > ```
 >
-> 자기가 받은 Anaconda 이름.sh 해주시면 됩니다.
 
 ### STEP 11. 가상환경 설치
 
@@ -233,9 +210,11 @@ tensorflow 설치 확인
 > """
 > ```
 
-긴 줄이 나오고 True가 뜨면 CUDA & CUDNN 및 tensorflow 설치가 잘 된겁니다.
+긴 줄이 나오고 True가 뜨면 CUDA & CUDNN 및 tensorflow 설치가 완료.
 
 ## Object Detection
+
+
 
 ### Data prepare
 
@@ -246,3 +225,11 @@ tensorflow 설치 확인
 ## Transform image to graphic
 
 ## GUI
+
+## Reference
+
+[CUDA 10.0 설치]([https://teddylee777.github.io/linux/CUDA-%EC%9D%B4%EC%A0%84%EB%B2%84%EC%A0%84-%EC%82%AD%EC%A0%9C%ED%9B%84-%EC%9E%AC%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0](https://teddylee777.github.io/linux/CUDA-이전버전-삭제후-재설치하기))
+
+[Object Detection 학습](https://towardsdatascience.com/detailed-tutorial-build-your-custom-real-time-object-detector-5ade1017fd2d#862a)
+
+[video detect](https://github.com/tensorflow/models/issues/6684)
