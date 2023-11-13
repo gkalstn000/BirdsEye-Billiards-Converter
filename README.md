@@ -2,7 +2,7 @@
 {:toc}
 # **BirdsEye Billiards Converter**
 
-![image-20231113111232961](/imgs/image-20230522104407665.png)
+![image-20231113124848618](/imgs/image-20231113124848618.png)
 
 
 
@@ -214,17 +214,23 @@ tensorflow 설치 확인
 
 ## Object Detection
 
+![image-20231113124711908](/imgs/objecd.png)
+
+Faster RCNN Inception model을 활용해 Table edge, ball 좌표값 확보.
 
 
-### Data prepare
-
-### 
-
-## Get table's vertex cordinate 
 
 ## Transform image to graphic
 
-## GUI
+![image-20231113125135815](/imgs/image-20231113125135815.png)
+
+Raw 좌표값을 수직 view 로 transform 하기 위해 자체 알고리즘 개발.
+
+* openCV [warpAffine](https://opencv-python.readthedocs.io/en/latest/doc/10.imageTransformation/imageTransformation.html) 변환 라이브러리보다 더 높은 정밀도
+
+- <iframe src="https://www.youtube.com/embed/qnMxNfZViCY" title="" frameborder="0" style="margin: 0 auto; display: block;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+- **좌**: openCV `warpAffine()` 라이브러리, **우**: 자체 개발 선형 변환 알고리즘
 
 ## Reference
 
